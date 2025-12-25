@@ -53,8 +53,9 @@ macro(find_cuda use_cuda use_cudnn)
         ${CUDA_TOOLKIT_ROOT_DIR}/lib/Win32)
     else(MSVC)
       find_library(CUDA_CUDART_LIBRARY cudart
-        ${CUDA_TOOLKIT_ROOT_DIR}/lib64
-        ${CUDA_TOOLKIT_ROOT_DIR}/lib)
+        PATHS ${CUDA_TOOLKIT_ROOT_DIR}
+        PATH_SUFFIXES lib lib64 targets/x86_64-linux/lib targets/x86_64-linux/lib/stubs lib64/stubs lib/x86_64-linux-gnu
+        NO_DEFAULT_PATH)
     endif(MSVC)
   endif()
 
